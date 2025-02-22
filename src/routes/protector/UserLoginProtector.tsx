@@ -2,22 +2,20 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ReactNode } from "react";
 interface UserLoginProtectorProps {
-    children: ReactNode; 
-  }
+  children: ReactNode;
+}
 
-const UserLoginProtector = ({children}:UserLoginProtectorProps)=>{
-const navigate=useNavigate()
-const userToken=localStorage.getItem("accesstoken")
+const UserLoginProtector = ({ children }: UserLoginProtectorProps) => {
+  const navigate = useNavigate();
+  const userToken = localStorage.getItem("accesstoken");
 
-useEffect(()=>{
-    if(!userToken){
-        navigate("/",{replace:true})
+  useEffect(() => {
+    if (!userToken) {
+      navigate("/login", { replace: true });
     }
-},[userToken,navigate])
-if (userToken) {
-    return children; 
-  }
-  return null
- }
+  }, [userToken, navigate]);
 
-export default UserLoginProtector
+  return children;
+};
+
+export default UserLoginProtector;
