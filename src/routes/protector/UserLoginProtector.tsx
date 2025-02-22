@@ -11,7 +11,7 @@ const userToken=localStorage.getItem("accesstoken")
 
 useEffect(()=>{
     if(!userToken){
-        navigate("/login",{replace:true})
+        navigate("/",{replace:true})
     }
 },[userToken,navigate])
 if (userToken) {
