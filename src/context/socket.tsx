@@ -46,7 +46,7 @@ export const SocketContextProvider = ({ children }: { children: ReactNode }): JS
       return;
     }
 
-    const newSocket = io("http://localhost:3000", {
+    const newSocket = io(import.meta.env.VITE_SERVER_URL, {
       query: { userId: loggedUser },
       transports: ["websocket"],
       reconnectionAttempts: 5,
