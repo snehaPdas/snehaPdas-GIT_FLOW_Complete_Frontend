@@ -29,6 +29,7 @@ interface ISessionSchedule {
   type: string;
   trainerId: string;
   isBooked: boolean;
+  
 
 }
 
@@ -37,13 +38,14 @@ interface TrainerProfile {
   name: string;
   profileImage: string;
  specializations: { name: string }[];
+ 
 }
 
 function TrainersProfileView() {
   const [selectedDate, setSelectedDate] = useState(dayjs());
-  const [availableSlots, setAvailableSlots] = useState<string[]>([]);
+  const [availableSlots, setAvailableSlots] = useState<{ time: string; price: any; id: any }[]>([]);
   const [isSingleSession, setIsSingleSession] = useState(false);
-  const [isPackageSession, setIsPackageSession] = useState(false);
+  const [isPackageSession, setIsPackageSession] = useState(false)
   const [sessionSchedules, setSessionSchedules] = useState<ISessionSchedule[]>([]);
   const [trainer, setTrainer] = useState<TrainerProfile | null>(null);
   const [bookingStatus, setBookingStatus] = useState<string | null>(null);
