@@ -32,7 +32,7 @@ function UserRoutes() {
         }
       /> */}
 
-      {/* <Route path="/home" element={<HomePage/>}/>  */}
+      <Route path="/home" element={<HomePage/>}/> 
       <Route path="/" element={<Navigate to="/login" replace />} />
       <Route path="/signup" element={<SignupPage />} />
       <Route path="/otp" element={<Otp />} />
