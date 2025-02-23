@@ -40,8 +40,8 @@ function IncomingVideoCall() {
             return
         }
         socket?.emit("accept-incoming-call",{
-            to:showIncomingVideoCall._id,
-            from:showIncomingVideoCall.trainerId,
+            to:showIncomingVideoCall.trainerId,
+            from:showIncomingVideoCall._id,
             roomId: showIncomingVideoCall.roomId,
 
         })
