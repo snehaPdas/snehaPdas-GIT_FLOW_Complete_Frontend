@@ -37,15 +37,7 @@ const Sidebar = () => {
           <span className="text-lg">Booking</span>
         </NavLink>
 
-        <NavLink to="/session" className={({ isActive }) => 
-          `flex items-center p-4 transition duration-300 cursor-pointer ${
-            isActive ? "bg-white/20" : "hover:bg-white/10"
-          }`
-        }>
-          <FaDumbbell  className="text-xl mr-3" />
-          <span className="text-lg">sessions</span>
-        </NavLink>
-
+        
         
 
         <NavLink to="message" className={({ isActive }) => 
