@@ -107,7 +107,7 @@ function Header() {
           <a href="/home" className="hover:text-[#d9a8d4] transition">Home</a>
           <a href="/aboutUs" className="hover:text-[#d9a8d4] transition">About</a>
           <a href="/trainers" className="hover:text-[#d9a8d4] transition">Trainers</a>
-          <a href="#" className="hover:text-[#d9a8d4] transition">Contact</a>
+        
         </nav>
 
         {/* notification  */}
