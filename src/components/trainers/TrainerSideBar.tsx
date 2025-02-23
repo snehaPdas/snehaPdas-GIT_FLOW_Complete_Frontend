@@ -81,7 +81,7 @@ function TrainerSideBar() {
 
           {/* Logout Button */}
           <Link
-            to=""
+            to="/trainer/login"
             className="flex items-center p-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md transition-all duration-200"
           >
             <FaSignOutAlt size={22} />
