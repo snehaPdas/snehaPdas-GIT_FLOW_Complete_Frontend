@@ -103,8 +103,8 @@ export const SocketContextProvider = ({ children }: { children: ReactNode }): JS
 
       socket.emit("trainer-call-accept", {
         roomId: data.roomId,
-        trainerId: data.from,
-        to: data._id,
+        trainerId: data.to,
+        to: data.from,
       });
     
     });
@@ -112,7 +112,7 @@ export const SocketContextProvider = ({ children }: { children: ReactNode }): JS
     // Trainer Accept
     socket.on("trainer-accept", (data: any) => {
       dispatch(setRoomId(data.roomId));
-      dispatch(setShowVideoCall(true));
+      // dispatch(setShowVideoCall(true));
     });
 
     // Call Rejected
@@ -132,9 +132,11 @@ export const SocketContextProvider = ({ children }: { children: ReactNode }): JS
         dispatch(setVideoCallUser(null));
         dispatch(setShowIncomingVideoCall(null));
       } else if (data === trainerInfo?.id) {
-        dispatch(setShowVideoCall(false));
-        dispatch(setRoomId(null));
-        dispatch(setVideoCall(null));
+        // dispatch(setShowVideoCall(false));
+        // dispatch(setRoomId(null));
+        // dispatch(setVideoCall(null));
+        console.log("Trainer left the call");
+        dispatch(endCallTrainer());
       }
     });
     socket.on('receiveNewBooking', (data: string) => {

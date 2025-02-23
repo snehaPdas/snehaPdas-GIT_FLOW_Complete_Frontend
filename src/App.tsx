@@ -20,6 +20,12 @@ function App() {
     (state: RootState) => state.user
   );
 
+  console.log("showIncomingVideoCall", showIncomingVideoCall);
+  console.log("showVideoCallUser", showVideoCallUser);
+
+  console.log("showVideoCallTrainer", showVideoCallTrainer);
+  console.log("videoCall", videoCall);
+
   return (
     <Router>
       {videoCall && !showVideoCallTrainer && <OutgoingVideocallPage />}

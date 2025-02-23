@@ -4,9 +4,11 @@ import { RootState } from "../../app/store";
 import { useEffect, useRef } from "react";
 import { setRoomIdUser, setShowIncomingVideoCall, setShowVideoCallUser, setVideoCallUser,} from "../../features/user/userSlice";
 import { useSocketContext } from "../../context/socket";
+import { useNavigate } from "react-router-dom";
 
 
 function VideoCall() {
+  const navigate=useNavigate()
   const videoCallRef = useRef<HTMLDivElement | null>(null);
   const { roomIdUser, showIncomingVideoCall, videoCall } = useSelector(
     (state: RootState) => state.user
@@ -35,36 +37,38 @@ function VideoCall() {
 
     const zp = ZegoUIKitPrebuilt.create(kitToken);
 
-    zp.joinRoom({
-      container: videoCallRef.current,
-      scenario: {
-        mode: ZegoUIKitPrebuilt.OneONoneCall,
-      },
-      turnOnMicrophoneWhenJoining: true,
-      turnOnCameraWhenJoining: true,
-      showPreJoinView: false,
-      onLeaveRoom: () => {
-        socket?.emit("leave-room", { to: showIncomingVideoCall?.trainerId });
-        dispatch(setShowVideoCallUser(false));
-        dispatch(setRoomIdUser(null));
-        dispatch(setVideoCallUser(null));
-        dispatch(setShowIncomingVideoCall(null));
-      },
-    });
+    if (videoCallRef.current) {
+      zp.joinRoom({
+        container: videoCallRef.current,
+        scenario: {
+          mode: ZegoUIKitPrebuilt.OneONoneCall,
+        },
+        turnOnMicrophoneWhenJoining: true,
+        turnOnCameraWhenJoining: true,
+        showPreJoinView: false,
+        onLeaveRoom: () => {
+          console.log("ClientLeaving room...");
+          
+          socket?.emit("leave-room", { to: showIncomingVideoCall?.trainerId });
+          dispatch(setShowVideoCallUser(false));
+          dispatch(setRoomIdUser(null));
+          dispatch(setVideoCallUser(null));
+          dispatch(setShowIncomingVideoCall(null));
+        },
+      });
+    }
 
     socket?.on("user-left", () => {
+      console.log("trainer left the room");
       zp.destroy();
       dispatch(setShowVideoCallUser(false));
       dispatch(setRoomIdUser(null));
       dispatch(setVideoCallUser(null));
       dispatch(setShowIncomingVideoCall(null));
-      localStorage.removeItem("roomId");
-
-      localStorage.removeItem("showVideoCall");
     });
 
     return () => {
-      window.location.reload();
+      // window.location.reload();
 
       zp.destroy();
     };

@@ -3,20 +3,22 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../app/store";
 import { useEffect, useRef } from "react";
 import {
+  endCallTrainer,
   setDietPLan,
   setRoomId,
   setShowVideoCall,
   setVideoCall,
-  
 } from "../../features/trainer/TrainerSlice";
 import { useSocketContext } from "../../context/socket";
+import { useNavigate } from "react-router-dom";
 
 function TrainerVideoCall() {
+  const navigate=useNavigate()
   const videoCallRef = useRef<HTMLDivElement | null>(null);
   const { roomIdTrainer, videoCall } = useSelector(
     (state: RootState) => state.trainer
   );
-  
+
   const dispatch = useDispatch();
   let { socket } = useSocketContext();
 
@@ -36,34 +38,33 @@ function TrainerVideoCall() {
 
     const zp = ZegoUIKitPrebuilt.create(kitToken);
 
-    zp.joinRoom({
-      container: videoCallRef.current,
-      scenario: {
-        mode: ZegoUIKitPrebuilt.OneONoneCall,
-      },
-      turnOnMicrophoneWhenJoining: true,
-      turnOnCameraWhenJoining: true,
-      showPreJoinView: false,
-      onUserJoin: (users) => {
-        users.forEach((user) => {
-          console.log("User joined the room:", user);
-        });
-      },
-      onLeaveRoom: () => {
-        console.log("Leaving room...");
+    if (videoCallRef.current) {
+      zp.joinRoom({
+        container: videoCallRef.current,
+        scenario: {
+          mode: ZegoUIKitPrebuilt.OneONoneCall,
+        },
+        turnOnMicrophoneWhenJoining: true,
+        turnOnCameraWhenJoining: true,
+        showPreJoinView: false,
+        onUserJoin: (users) => {
+          users.forEach((user) => {
+            console.log("User joined the room:", user);
+          });
+        },
+        onLeaveRoom: () => {
+          console.log("Trainer Leaving room...");
 
-        // Emit leave-room event to the server
-        if (socket) {
-          socket.emit("leave-room", { to: videoCall?.userID });
-        }
+          socket?.emit("leave-room", { to: videoCall?.userID });
 
-        // Reset state on leave
-        dispatch(setDietPLan(true))
-        dispatch(setShowVideoCall(false));
-        dispatch(setRoomId(null));
-        dispatch(setVideoCall(null));
-      },
-    });
+          // // Reset state on leave
+          // dispatch(setShowVideoCall(false));
+          // dispatch(setRoomId(null));
+          // dispatch(setVideoCall(null));
+          dispatch(endCallTrainer());
+        },
+      });
+    }
 
     // Handle user-left event from the server
     socket?.on("user-left", () => {
