@@ -125,8 +125,8 @@ export const SocketContextProvider = ({ children }: { children: ReactNode }): JS
 
     // User Left
     socket.on("user-left", (data: string | undefined) => {
-      
       if (data === userInfo?.id) {
+        console.log("yess******userleft")
         dispatch(setShowVideoCallUser(false));
         dispatch(setRoomIdUser(null));
         dispatch(setVideoCallUser(null));
@@ -135,7 +135,7 @@ export const SocketContextProvider = ({ children }: { children: ReactNode }): JS
         // dispatch(setShowVideoCall(false));
         // dispatch(setRoomId(null));
         // dispatch(setVideoCall(null));
-        console.log("Trainer left the call");
+        
         dispatch(endCallTrainer());
       }
     });

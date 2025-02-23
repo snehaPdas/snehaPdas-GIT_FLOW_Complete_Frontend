@@ -49,7 +49,7 @@ function VideoCall() {
         onLeaveRoom: () => {
           console.log("ClientLeaving room...");
           
-          socket?.emit("leave-room", { to: showIncomingVideoCall?.trainerId });
+          socket?.emit("leave-room", { to: showIncomingVideoCall?._id });
           dispatch(setShowVideoCallUser(false));
           dispatch(setRoomIdUser(null));
           dispatch(setVideoCallUser(null));

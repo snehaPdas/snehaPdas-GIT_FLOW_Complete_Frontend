@@ -55,12 +55,7 @@ function TrainerVideoCall() {
         onLeaveRoom: () => {
           console.log("Trainer Leaving room...");
 
-          socket?.emit("leave-room", { to: videoCall?.userID });
-
-          // // Reset state on leave
-          // dispatch(setShowVideoCall(false));
-          // dispatch(setRoomId(null));
-          // dispatch(setVideoCall(null));
+          socket?.emit("leave-room", { to: videoCall });
           dispatch(endCallTrainer());
         },
       });
