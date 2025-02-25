@@ -100,7 +100,7 @@ function Otp() {
   return (
     <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-gray-300 via-[#321038] to-gray-200">
 
-    {/* <div className="min-h-screen bg-slate-100 flex justify-center items-center"> */}
+  
   <div className="w-full sm:w-[300px] bg-white p-6 rounded-xl shadow-lg">
     <h2 className="text-2xl font-semibold text-[#572c5f] text-center mb-6">
       Enter OTP
@@ -134,9 +134,7 @@ function Otp() {
     >
       Verify OTP
     </button>
-        <button
-          className="btn btn-secondary mt-3">
-        </button>
+      
     <p className="mt-4 text-center text-gray-500 text-sm">
       Didn't receive the code? 
       <button 
@@ -148,7 +146,7 @@ function Otp() {
         </button>
     </p>
   </div>
-{/* </div> */}
+
 </div>
 
   );

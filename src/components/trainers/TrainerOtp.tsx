@@ -122,9 +122,7 @@ function TrainerOtp() {
     >
       Verify OTP
     </button>
-        <button
-          className="btn btn-secondary mt-3">
-        </button>
+     
     <p className="mt-4 text-center text-[#3f3940] text-sm">
       Didn't receive the code? 
       <button 
