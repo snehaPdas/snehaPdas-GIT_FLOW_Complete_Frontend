@@ -97,7 +97,7 @@ function TrainerOtp() {
       Enter OTP
     </h2>
     <p className="text-center text-[#572c5f] mb-8">
-      Please enter the 4-digit OTP sent to your mobile number.
+      Please enter the 4-digit OTP sent to your Email.
     </p>
     <div className="flex justify-between space-x-2">
       {

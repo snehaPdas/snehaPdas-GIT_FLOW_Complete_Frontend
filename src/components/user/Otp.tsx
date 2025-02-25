@@ -106,7 +106,7 @@ function Otp() {
       Enter OTP
     </h2>
     <p className="text-center text-gray-500 mb-8">
-      Please enter the 4-digit OTP sent to your mobile number.
+      Please enter the 4-digit OTP sent to your Email.
     </p>
     <p className="text-center text-red-500 font-semibold">
           OTP expires in: {otpTimer}s
