@@ -197,16 +197,22 @@ function TrainersProfileView() {
 
   useEffect(() => {
     const findBooking = async () => {
-      const response = await userAxiosInstance.get(
-        `/api/user/bookings/${userId}/${trainerId}`
-      );
-    
-      setBookingStatus(response.data);
+      try {
+        const response = await userAxiosInstance.get(
+          `/api/user/bookings/${userId}/${trainerId}`
+        );
+        setBookingStatus(response.data);
+        setError(null); // Clear previous errors if successful
+      } catch (err:any) {
+        console.error("Error fetching booking status:", err);
+
+        // Set the error message from the backend or a fallback message
+        setError(err.response?.data?.message || "Something went wrong while fetching booking status.");
+      }
     };
 
     findBooking();
-  }, []);
-
+  }, [userId, trainerId]);
 const handleAddReview = () => {
   setIsReviewModalOpen(true);
 }
@@ -467,3 +473,7 @@ useEffect(() => {
 }
 
 export default TrainersProfileView;
+  function setError(arg0: null) {
+    throw new Error("Function not implemented.");
+  }
+

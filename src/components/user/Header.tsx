@@ -104,9 +104,9 @@ function Header() {
 
         {/* Navigation */}
         <nav className="hidden md:flex space-x-8">
-          <a href="/home" className="hover:text-[#d9a8d4] transition">Home</a>
-          <a href="/aboutUs" className="hover:text-[#d9a8d4] transition">About</a>
-          <a href="/trainers" className="hover:text-[#d9a8d4] transition">Trainers</a>
+          <Link to="/home" className="hover:text-[#d9a8d4] transition">Home</Link>
+          <Link to="/aboutUs" className="hover:text-[#d9a8d4] transition">About</Link>
+          <Link to="/trainers" className="hover:text-[#d9a8d4] transition">Trainers</Link>
         
         </nav>
 
