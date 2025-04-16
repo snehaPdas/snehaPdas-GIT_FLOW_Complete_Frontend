@@ -5,7 +5,7 @@ import Header from "./Header";
 
 function UserLayout() {
   return (
-    <div className="h-screen flex flex-col">
+    <div className="h-screen flex flex-col overflow-hidden">
       {/* Full-Width Header */}
       <Header />
 

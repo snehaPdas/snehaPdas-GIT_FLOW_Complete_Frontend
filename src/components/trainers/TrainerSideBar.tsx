@@ -21,8 +21,8 @@ function TrainerSideBar() {
     <div className="flex">
       {/* Sidebar */}
       <div
-        className={`h-screen bg-[#572c5f] text-white flex flex-col p-5 transition-all duration-300 ${isSidebarOpen ? "w-64" : "w-16"} md:w-64`} // Change width for small screens
-      >
+className={`h-screen bg-[#572c5f] text-white flex flex-col p-5`}
+>
         <div className="flex justify-between items-center mb-6">
           <button onClick={toggleSidebar} className="text-white">
             <FaBars size={24} />

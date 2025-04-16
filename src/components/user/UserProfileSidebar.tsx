@@ -11,8 +11,7 @@ const Sidebar = () => {
     navigate("/login");
   }
   return (
-    <div className="w-64 h-screen bg-gradient-to-br from-[#572c52] to-[#a485a1] text-white flex flex-col shadow-lg">
-      {/* Logo / Branding */}
+    <div className="fixed top-5 left-0 w-64 h-full bg-gradient-to-br from-[#572c52] to-[#a485a1] text-white flex flex-col shadow-lg">
       <div className="text-center text-xl font-bold py-5 border-b border-white/20">
       User Dashboard
       </div>
